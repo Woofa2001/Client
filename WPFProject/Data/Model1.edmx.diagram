@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f72ab821fb60430dad53d9657bd96211" Name="Diagram1">
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.AREAS" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.DEALS" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.PEOPLE" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.PROPOSALS" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.TYPE_OBJECTS" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.USERS_TABLE" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Real_Estate_AgencyModel.FK_PROPOSALS_AREAS" ManuallyRouted="false" />
+        <AssociationConnector Association="Real_Estate_AgencyModel.FK_DEALS_PEOPLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Real_Estate_AgencyModel.FK_DEALS_PEOPLE1" ManuallyRouted="false" />
+        <AssociationConnector Association="Real_Estate_AgencyModel.FK_DEALS_PROPOSALS" ManuallyRouted="false" />
+        <AssociationConnector Association="Real_Estate_AgencyModel.FK_PROPOSALS_PEOPLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Real_Estate_AgencyModel.FK_PROPOSALS_TYPE_OBJECTS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

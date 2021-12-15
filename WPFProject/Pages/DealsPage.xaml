@@ -1,0 +1,64 @@
+﻿<Page x:Class="WPFProject.Pages.DealsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFProject.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DealsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="300" MinWidth="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FF42992F" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+        <Label Content="Сделки" Grid.ColumnSpan="3" FontSize="20" 
+               VerticalAlignment="Bottom" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="AddAreas" Content="Добавить" Width="75" Margin="5,5"  Click="ShowButtonDeals"/>
+            <Button x:Name="DeleteAreas" Content="Удалить" Width="75" Margin="5,5" Click="DeleteButtonDeals"/>
+        </StackPanel>
+        <Label Content="Риэлтор" Grid.Column="0" Grid.Row="2" FontSize="18" 
+               VerticalAlignment="Bottom"  />
+
+        <DataGrid x:Name="DealsDataGrid" Grid.Row="3" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        Риэлтор
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding SURNAME}" />
+                                <Label Content="{Binding NAME}"/>
+                                <Label Content="{Binding MIDNAME}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GridSplitter Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Center" 
+                      Width="5"/>
+        <DataGrid x:Name="CopyDataGrid" ItemsSource ="{Binding ElementName=DealsDataGrid, Path =SelectedItem.DEALS1}" 
+                  Grid.Row="3" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Покупатель" Binding="{Binding Path=PEOPLE.SURNAME}"  Width="10*"/>
+                <DataGridTextColumn Header="Дата сделки" Binding="{Binding Path=DATA_DEALS}" Width="80"/>
+                <DataGridTextColumn Header="Коммисия" Binding="{Binding Path=COMM_REAL}" Width="90"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

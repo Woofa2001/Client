@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Real_Estate_AgencyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AREAS">
+          <Key>
+            <PropertyRef Name="ID_AREA" />
+          </Key>
+          <Property Name="ID_AREA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPE_AREA" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="DEALS">
+          <Key>
+            <PropertyRef Name="ID_DEAL" />
+          </Key>
+          <Property Name="ID_DEAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_REAL" Type="int" />
+          <Property Name="ID_CLIENT" Type="int" />
+          <Property Name="ID_PROPOSAL" Type="int" />
+          <Property Name="DATA_DEALS" Type="date" />
+          <Property Name="COMM_REAL" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PEOPLE">
+          <Key>
+            <PropertyRef Name="ID_PEOPLE" />
+          </Key>
+          <Property Name="ID_PEOPLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MIDNAME" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PROPOSALS">
+          <Key>
+            <PropertyRef Name="ID_PROPOSAL" />
+          </Key>
+          <Property Name="ID_PROPOSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SELLER" Type="int" />
+          <Property Name="ID_TYPE_OBJECT" Type="int" />
+          <Property Name="ID_AREA" Type="int" />
+          <Property Name="STREET" Type="varchar" MaxLength="50" />
+          <Property Name="FLAT" Type="int" />
+          <Property Name="FLOOR" Type="int" />
+          <Property Name="COUNT_FLOORS" Type="int" />
+          <Property Name="COUNT_ROOMS" Type="int" />
+          <Property Name="TOTAL_AREA" Type="int" />
+          <Property Name="LIVING_AREA" Type="int" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="200" />
+          <Property Name="COST" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TYPE_OBJECTS">
+          <Key>
+            <PropertyRef Name="ID_TYPE_OBJECT" />
+          </Key>
+          <Property Name="ID_TYPE_OBJECT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME_TYPE" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="USERS_TABLE">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE" Type="int" />
+        </EntityType>
+        <Association Name="FK_DEALS_PEOPLE">
+          <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="0..1" />
+          <End Role="DEALS" Type="Self.DEALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEOPLE">
+              <PropertyRef Name="ID_PEOPLE" />
+            </Principal>
+            <Dependent Role="DEALS">
+              <PropertyRef Name="ID_CLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEALS_PEOPLE1">
+          <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="0..1" />
+          <End Role="DEALS" Type="Self.DEALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEOPLE">
+              <PropertyRef Name="ID_PEOPLE" />
+            </Principal>
+            <Dependent Role="DEALS">
+              <PropertyRef Name="ID_REAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEALS_PROPOSALS">
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="0..1" />
+          <End Role="DEALS" Type="Self.DEALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROPOSALS">
+              <PropertyRef Name="ID_PROPOSAL" />
+            </Principal>
+            <Dependent Role="DEALS">
+              <PropertyRef Name="ID_PROPOSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSALS_AREAS">
+          <End Role="AREAS" Type="Self.AREAS" Multiplicity="0..1" />
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREAS">
+              <PropertyRef Name="ID_AREA" />
+            </Principal>
+            <Dependent Role="PROPOSALS">
+              <PropertyRef Name="ID_AREA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSALS_PEOPLE">
+          <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="0..1" />
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEOPLE">
+              <PropertyRef Name="ID_PEOPLE" />
+            </Principal>
+            <Dependent Role="PROPOSALS">
+              <PropertyRef Name="ID_SELLER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSALS_TYPE_OBJECTS">
+          <End Role="TYPE_OBJECTS" Type="Self.TYPE_OBJECTS" Multiplicity="0..1" />
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE_OBJECTS">
+              <PropertyRef Name="ID_TYPE_OBJECT" />
+            </Principal>
+            <Dependent Role="PROPOSALS">
+              <PropertyRef Name="ID_TYPE_OBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Real_Estate_AgencyModelStoreContainer">
+          <EntitySet Name="AREAS" EntityType="Self.AREAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEALS" EntityType="Self.DEALS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEOPLE" EntityType="Self.PEOPLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROPOSALS" EntityType="Self.PROPOSALS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYPE_OBJECTS" EntityType="Self.TYPE_OBJECTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS_TABLE" EntityType="Self.USERS_TABLE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DEALS_PEOPLE" Association="Self.FK_DEALS_PEOPLE">
+            <End Role="PEOPLE" EntitySet="PEOPLE" />
+            <End Role="DEALS" EntitySet="DEALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEALS_PEOPLE1" Association="Self.FK_DEALS_PEOPLE1">
+            <End Role="PEOPLE" EntitySet="PEOPLE" />
+            <End Role="DEALS" EntitySet="DEALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEALS_PROPOSALS" Association="Self.FK_DEALS_PROPOSALS">
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+            <End Role="DEALS" EntitySet="DEALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSALS_AREAS" Association="Self.FK_PROPOSALS_AREAS">
+            <End Role="AREAS" EntitySet="AREAS" />
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSALS_PEOPLE" Association="Self.FK_PROPOSALS_PEOPLE">
+            <End Role="PEOPLE" EntitySet="PEOPLE" />
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSALS_TYPE_OBJECTS" Association="Self.FK_PROPOSALS_TYPE_OBJECTS">
+            <End Role="TYPE_OBJECTS" EntitySet="TYPE_OBJECTS" />
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Real_Estate_AgencyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AREAS">
+          <Key>
+            <PropertyRef Name="ID_AREA" />
+          </Key>
+          <Property Name="ID_AREA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPE_AREA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROPOSALS" Relationship="Self.FK_PROPOSALS_AREAS" FromRole="AREAS" ToRole="PROPOSALS" />
+        </EntityType>
+        <EntityType Name="DEALS">
+          <Key>
+            <PropertyRef Name="ID_DEAL" />
+          </Key>
+          <Property Name="ID_DEAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_REAL" Type="Int32" />
+          <Property Name="ID_CLIENT" Type="Int32" />
+          <Property Name="ID_PROPOSAL" Type="Int32" />
+          <Property Name="DATA_DEALS" Type="DateTime" Precision="0" />
+          <Property Name="COMM_REAL" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="PEOPLE" Relationship="Self.FK_DEALS_PEOPLE" FromRole="DEALS" ToRole="PEOPLE" />
+          <NavigationProperty Name="PEOPLE1" Relationship="Self.FK_DEALS_PEOPLE1" FromRole="DEALS" ToRole="PEOPLE" />
+          <NavigationProperty Name="PROPOSALS" Relationship="Self.FK_DEALS_PROPOSALS" FromRole="DEALS" ToRole="PROPOSALS" />
+        </EntityType>
+        <EntityType Name="PEOPLE">
+          <Key>
+            <PropertyRef Name="ID_PEOPLE" />
+          </Key>
+          <Property Name="ID_PEOPLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MIDNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DEALS" Relationship="Self.FK_DEALS_PEOPLE" FromRole="PEOPLE" ToRole="DEALS" />
+          <NavigationProperty Name="DEALS1" Relationship="Self.FK_DEALS_PEOPLE1" FromRole="PEOPLE" ToRole="DEALS" />
+          <NavigationProperty Name="PROPOSALS" Relationship="Self.FK_PROPOSALS_PEOPLE" FromRole="PEOPLE" ToRole="PROPOSALS" />
+        </EntityType>
+        <EntityType Name="PROPOSALS">
+          <Key>
+            <PropertyRef Name="ID_PROPOSAL" />
+          </Key>
+          <Property Name="ID_PROPOSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SELLER" Type="Int32" />
+          <Property Name="ID_TYPE_OBJECT" Type="Int32" />
+          <Property Name="ID_AREA" Type="Int32" />
+          <Property Name="STREET" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FLAT" Type="Int32" />
+          <Property Name="FLOOR" Type="Int32" />
+          <Property Name="COUNT_FLOORS" Type="Int32" />
+          <Property Name="COUNT_ROOMS" Type="Int32" />
+          <Property Name="TOTAL_AREA" Type="Int32" />
+          <Property Name="LIVING_AREA" Type="Int32" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="COST" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="AREAS" Relationship="Self.FK_PROPOSALS_AREAS" FromRole="PROPOSALS" ToRole="AREAS" />
+          <NavigationProperty Name="DEALS" Relationship="Self.FK_DEALS_PROPOSALS" FromRole="PROPOSALS" ToRole="DEALS" />
+          <NavigationProperty Name="PEOPLE" Relationship="Self.FK_PROPOSALS_PEOPLE" FromRole="PROPOSALS" ToRole="PEOPLE" />
+          <NavigationProperty Name="TYPE_OBJECTS" Relationship="Self.FK_PROPOSALS_TYPE_OBJECTS" FromRole="PROPOSALS" ToRole="TYPE_OBJECTS" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TYPE_OBJECTS">
+          <Key>
+            <PropertyRef Name="ID_TYPE_OBJECT" />
+          </Key>
+          <Property Name="ID_TYPE_OBJECT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROPOSALS" Relationship="Self.FK_PROPOSALS_TYPE_OBJECTS" FromRole="TYPE_OBJECTS" ToRole="PROPOSALS" />
+        </EntityType>
+        <EntityType Name="USERS_TABLE">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_PROPOSALS_AREAS">
+          <End Role="AREAS" Type="Self.AREAS" Multiplicity="0..1" />
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREAS">
+              <PropertyRef Name="ID_AREA" />
+            </Principal>
+            <Dependent Role="PROPOSALS">
+              <PropertyRef Name="ID_AREA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEALS_PEOPLE">
+          <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="0..1" />
+          <End Role="DEALS" Type="Self.DEALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEOPLE">
+              <PropertyRef Name="ID_PEOPLE" />
+            </Principal>
+            <Dependent Role="DEALS">
+              <PropertyRef Name="ID_CLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEALS_PEOPLE1">
+          <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="0..1" />
+          <End Role="DEALS" Type="Self.DEALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEOPLE">
+              <PropertyRef Name="ID_PEOPLE" />
+            </Principal>
+            <Dependent Role="DEALS">
+              <PropertyRef Name="ID_REAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEALS_PROPOSALS">
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="0..1" />
+          <End Role="DEALS" Type="Self.DEALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROPOSALS">
+              <PropertyRef Name="ID_PROPOSAL" />
+            </Principal>
+            <Dependent Role="DEALS">
+              <PropertyRef Name="ID_PROPOSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSALS_PEOPLE">
+          <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="0..1" />
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEOPLE">
+              <PropertyRef Name="ID_PEOPLE" />
+            </Principal>
+            <Dependent Role="PROPOSALS">
+              <PropertyRef Name="ID_SELLER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSALS_TYPE_OBJECTS">
+          <End Role="TYPE_OBJECTS" Type="Self.TYPE_OBJECTS" Multiplicity="0..1" />
+          <End Role="PROPOSALS" Type="Self.PROPOSALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE_OBJECTS">
+              <PropertyRef Name="ID_TYPE_OBJECT" />
+            </Principal>
+            <Dependent Role="PROPOSALS">
+              <PropertyRef Name="ID_TYPE_OBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Real_Estate_AgencyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AREAS" EntityType="Self.AREAS" />
+          <EntitySet Name="DEALS" EntityType="Self.DEALS" />
+          <EntitySet Name="PEOPLE" EntityType="Self.PEOPLE" />
+          <EntitySet Name="PROPOSALS" EntityType="Self.PROPOSALS" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TYPE_OBJECTS" EntityType="Self.TYPE_OBJECTS" />
+          <EntitySet Name="USERS_TABLE" EntityType="Self.USERS_TABLE" />
+          <AssociationSet Name="FK_PROPOSALS_AREAS" Association="Self.FK_PROPOSALS_AREAS">
+            <End Role="AREAS" EntitySet="AREAS" />
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEALS_PEOPLE" Association="Self.FK_DEALS_PEOPLE">
+            <End Role="PEOPLE" EntitySet="PEOPLE" />
+            <End Role="DEALS" EntitySet="DEALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEALS_PEOPLE1" Association="Self.FK_DEALS_PEOPLE1">
+            <End Role="PEOPLE" EntitySet="PEOPLE" />
+            <End Role="DEALS" EntitySet="DEALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEALS_PROPOSALS" Association="Self.FK_DEALS_PROPOSALS">
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+            <End Role="DEALS" EntitySet="DEALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSALS_PEOPLE" Association="Self.FK_PROPOSALS_PEOPLE">
+            <End Role="PEOPLE" EntitySet="PEOPLE" />
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSALS_TYPE_OBJECTS" Association="Self.FK_PROPOSALS_TYPE_OBJECTS">
+            <End Role="TYPE_OBJECTS" EntitySet="TYPE_OBJECTS" />
+            <End Role="PROPOSALS" EntitySet="PROPOSALS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Real_Estate_AgencyModelStoreContainer" CdmEntityContainer="Real_Estate_AgencyEntities">
+          <EntitySetMapping Name="AREAS">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.AREAS">
+              <MappingFragment StoreEntitySet="AREAS">
+                <ScalarProperty Name="ID_AREA" ColumnName="ID_AREA" />
+                <ScalarProperty Name="TYPE_AREA" ColumnName="TYPE_AREA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEALS">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.DEALS">
+              <MappingFragment StoreEntitySet="DEALS">
+                <ScalarProperty Name="ID_DEAL" ColumnName="ID_DEAL" />
+                <ScalarProperty Name="ID_REAL" ColumnName="ID_REAL" />
+                <ScalarProperty Name="ID_CLIENT" ColumnName="ID_CLIENT" />
+                <ScalarProperty Name="ID_PROPOSAL" ColumnName="ID_PROPOSAL" />
+                <ScalarProperty Name="DATA_DEALS" ColumnName="DATA_DEALS" />
+                <ScalarProperty Name="COMM_REAL" ColumnName="COMM_REAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEOPLE">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.PEOPLE">
+              <MappingFragment StoreEntitySet="PEOPLE">
+                <ScalarProperty Name="ID_PEOPLE" ColumnName="ID_PEOPLE" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MIDNAME" ColumnName="MIDNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROPOSALS">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.PROPOSALS">
+              <MappingFragment StoreEntitySet="PROPOSALS">
+                <ScalarProperty Name="ID_PROPOSAL" ColumnName="ID_PROPOSAL" />
+                <ScalarProperty Name="ID_SELLER" ColumnName="ID_SELLER" />
+                <ScalarProperty Name="ID_TYPE_OBJECT" ColumnName="ID_TYPE_OBJECT" />
+                <ScalarProperty Name="ID_AREA" ColumnName="ID_AREA" />
+                <ScalarProperty Name="STREET" ColumnName="STREET" />
+                <ScalarProperty Name="FLAT" ColumnName="FLAT" />
+                <ScalarProperty Name="FLOOR" ColumnName="FLOOR" />
+                <ScalarProperty Name="COUNT_FLOORS" ColumnName="COUNT_FLOORS" />
+                <ScalarProperty Name="COUNT_ROOMS" ColumnName="COUNT_ROOMS" />
+                <ScalarProperty Name="TOTAL_AREA" ColumnName="TOTAL_AREA" />
+                <ScalarProperty Name="LIVING_AREA" ColumnName="LIVING_AREA" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="COST" ColumnName="COST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPE_OBJECTS">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.TYPE_OBJECTS">
+              <MappingFragment StoreEntitySet="TYPE_OBJECTS">
+                <ScalarProperty Name="ID_TYPE_OBJECT" ColumnName="ID_TYPE_OBJECT" />
+                <ScalarProperty Name="NAME_TYPE" ColumnName="NAME_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS_TABLE">
+            <EntityTypeMapping TypeName="Real_Estate_AgencyModel.USERS_TABLE">
+              <MappingFragment StoreEntitySet="USERS_TABLE">
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

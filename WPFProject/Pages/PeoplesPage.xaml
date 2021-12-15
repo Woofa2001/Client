@@ -1,0 +1,83 @@
+﻿<Page x:Class="WPFProject.Pages.PeoplesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFProject.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PeoplePage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0" x:Name="SplitterColumn"/>
+            <ColumnDefinition Width="0" x:Name="ChangeColumn" MaxWidth="175"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FF42992F" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+        <Label Content="Люди" Grid.ColumnSpan="3" FontSize="20" 
+               VerticalAlignment="Bottom" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="AddPeople" Content="Добавить" Width="75" Margin="5,5"  Click="ShowButtonPeople"/>
+            <Button x:Name="CopyPeople" Content="Копировать" Width="75" Margin="5,5" Click="ShowButtonPeople"/>
+            <Button x:Name="EditPeople" Content="Изменить" Width="75" Margin="5,5"  Click="ShowButtonPeople"/>
+            <Button x:Name="DeletePeople" Content="Удалить" Width="75" Margin="5,5" Click="DeleteButtonPeople"/>
+            <ComboBox Name="PeopleFilterComboBox" Width="150" Margin="5,5" SelectionChanged="PeopleFilterComboBox_SelectionChanged"/>
+            <TextBox x:Name="PeopleFilterTextBox" Width="175" Margin="5,5" TextChanged="PeopleFilterTextBox_TextChanged" />
+        </StackPanel>
+        <DataGrid x:Name="PeopleDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        Фамилия
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding SURNAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        Имя
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding NAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        Отчество
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding MIDNAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" 
+                      Width="5"/>
+        
+        <Button Content="X" Click="CloseEdChangeClick" Grid.Column="2" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <StackPanel  Grid.RowSpan="2" Grid.Row="8" Grid.Column="2" Orientation="Vertical">
+            <Label Content="Фамилия" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=PeopleDataGrid, Path=SelectedItem.SURNAME}" x:Name="PeopleFTextBox"/>
+            <Label Content="Имя" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=PeopleDataGrid, Path=SelectedItem.NAME}" x:Name="PeopleITextBox"/>
+            <Label Content="Отчество" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=PeopleDataGrid, Path=SelectedItem.MIDNAME}" x:Name="PeopleOTextBox"/>
+            <Button Height="25" Content="Принять" Click="CommitButtonPeople" Margin="0 10 0 10"/>
+        </StackPanel>
+    </Grid>
+</Page>
