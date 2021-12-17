@@ -21,11 +21,11 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FF42992F" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"/>
-        <Label Content="Предложения" Grid.ColumnSpan="6" FontSize="20" 
+        <Rectangle Fill="#BFEFFF" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <Label Content="Предложения" Grid.ColumnSpan="3" FontSize="20" 
                VerticalAlignment="Bottom" />
         
-        <StackPanel Grid.Row="1"  Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button x:Name="AddAreas" Content="Добавить" Width="75" Margin="5,5" Click="ShowButtonProposals"/>
             <Button x:Name="CopyAreas" Content="Копировать" Width="75" Margin="5,5" Click="ShowButtonProposals"/>
             <Button x:Name="EditAreas" Content="Изменить" Width="75" Margin="5,5" Click="ShowButtonProposals"/>
@@ -151,14 +151,17 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" 
-                      Width="5"/>
+        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" 
+                      Width="4" Background="#9BB6BF"/>
         
-        <Label x:Name="ProposalsLabelName" Content="Добавление предложения" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left"/>
-        <Button Content="X" Click="CloseEdChangeClick" Grid.Column="2" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <ScrollViewer Grid.RowSpan="2" Grid.Row="3" Grid.Column="2" x:Name="ProposalsScrollBar">
-            <StackPanel  Orientation="Vertical">
+        
+        <ScrollViewer  Grid.Row="2" Grid.Column="2" x:Name="ProposalsScrollBar">
+
+            <StackPanel  Orientation="Vertical" Background="#BADFFF">
                 
+                <Label x:Name="ProposalsLabelName" Content="Добавление предложения" HorizontalAlignment="Left" FontSize="16" />
+                <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
                 <Label Content = "Фамилия" Foreground="Black"/>
                 <ComboBox x:Name="PeopleComboBox" SelectedItem="{Binding ElementName=ProposalsDataGrid, Path=SelectedItem.PEOPLE}">
                       <ComboBox.ItemTemplate>
@@ -170,7 +173,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ComboBox>
 
                 <Label Content = "Тип объекта" Foreground="Black"/>
                 <ComboBox x:Name="TypeObjectComboBox" DisplayMemberPath="NAME_TYPE" SelectedItem="{Binding ElementName=ProposalsDataGrid, Path=SelectedItem.TYPE_OBJECTS}"/>

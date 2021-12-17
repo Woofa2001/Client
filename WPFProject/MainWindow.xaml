@@ -5,20 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Главное окно" Height="500" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="110" MinWidth="110"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*" MinWidth="250"/>
+            <ColumnDefinition Width="*" MinWidth="250" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="Beige" >
-            <Image Source="Images/Library.png" Width="60" Height="60" Margin="0 10 0 10"/>
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="#BFEFFF" >
+            <Image Source="Images/Image.png" Width="80" Height="80" Margin="0 10 0 10"/>
             <Button x:Name="AreasButton" Content="Районы" Margin="5,5"
                  Click="ShowAreasPage"/>
             <Button x:Name="PeopleButton" Content="Люди" Margin="5,5" 
@@ -31,20 +30,18 @@
                     Click="ShowDealsPage"/>
         </StackPanel>
 
-        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" 
-                      Width="3" HorizontalAlignment="Center" Background="LightGray" />
 
-        <Frame x:Name="RealAgencyFrame" Grid.Column="2" Grid.Row="0" NavigationUIVisibility="Hidden"
+        <Frame x:Name="RealAgencyFrame" Grid.Column="1" Grid.Row="0" NavigationUIVisibility="Hidden"
                />
 
-        <Rectangle Grid.Column="2" Grid.Row="1" Fill="Beige" />
-        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="#BFEFFF" />
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button x:Name="PreviosPageButton" Content="Назад" Width="75" Margin="5,5" Click="PreviosPageButton_Click"
                     />
             <Button x:Name="NextPageButton" Content="Вперед" Width="75" Margin="5,5" Click="NextPageButton_Click"
                    />
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="ClosePageButton" Content="Закрыть страницу" Width="120" Margin="5" Click="ClosePageButton_Click"
                     />
         </StackPanel>

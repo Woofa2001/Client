@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPFProject.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="900"
       Title="TypeObjectsPage" Loaded="Page_Loaded">
 
     <Grid>
@@ -19,10 +19,10 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FF42992F" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"/>
+        <Rectangle Fill="#BFEFFF" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
         <Label Content="Типы объектов" Grid.ColumnSpan="3" FontSize="20" 
                VerticalAlignment="Bottom" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button x:Name="AddAreas" Content="Добавить" Width="75" Margin="5,5" Click="ShowButtonTypeObject"/>
             <Button x:Name="CopyAreas" Content="Копировать" Width="75" Margin="5,5" Click="ShowButtonTypeObject"/>
             <Button x:Name="EditAreas" Content="Изменить" Width="75" Margin="5,5" Click="ShowButtonTypeObject"/>
@@ -45,10 +45,11 @@
             </DataGrid.Columns>
             
         </DataGrid>
-        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center"  Width="5" />
+        <GridSplitter Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" Background="#9BB6BF" Width="4" />
 
-        <Button Content="X" Click="CloseEdChangeClick" Grid.Column="2" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <StackPanel  Grid.RowSpan="2" Grid.Row="3" Grid.Column="2" Orientation="Vertical">
+
+        <StackPanel  Grid.RowSpan="2" Grid.Row="3" Grid.Column="2" Orientation="Vertical" Background="#BADFFF">
+            <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <Label x:Name="TypeObjectLabel1" Content="Название типа объекта" Foreground="Black"/>
             <TextBox x:Name="NameTypeTextBox" Text="{Binding ElementName=TypeObjectDataGrid, Path=SelectedItem.NAME_TYPE}"/>
             <Button Height="25" Content="Принять" Click="CommitButtonTypeObject" Margin="0 10 0 10" VerticalAlignment="Bottom"/>

@@ -87,10 +87,13 @@ namespace WPFProject.Pages
             {
                 ChangeColumn.Width = new GridLength(300);
                 SplitterColumn.Width = GridLength.Auto;
+                ProposalsDataGrid.IsHitTestVisible = false;
+                ProposalsFilterComboBox.IsHitTestVisible = false;
+                ProposalsFilterTextBox.IsHitTestVisible = false;
                 if ((sender as Button).Content.ToString() == "Добавить")
                 {
                     ProposalsDataGrid.SelectedItem = null;
-                    ProposalsDataGrid.IsHitTestVisible = false;
+                    
                 }
                 if ((sender as Button).Content.ToString() == "Копировать")
                 {
@@ -124,7 +127,7 @@ namespace WPFProject.Pages
                     ProposalsLAreaTextBox.Text = LIVING_AREA;
                     ProposalsDiscriptionTextBox.Text = DESCRIPTION;
                     ProposalsCostTextBox.Text = COST;
-                    ProposalsDataGrid.IsHitTestVisible = false;
+ 
                 }
             }
             else

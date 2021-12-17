@@ -16,25 +16,18 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FF42992F" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Сделки" Grid.ColumnSpan="3" FontSize="20" 
-               VerticalAlignment="Bottom" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="AddAreas" Content="Добавить" Width="75" Margin="5,5"  Click="ShowButtonDeals"/>
-            <Button x:Name="DeleteAreas" Content="Удалить" Width="75" Margin="5,5" Click="DeleteButtonDeals"/>
-        </StackPanel>
-        <Label Content="Риэлтор" Grid.Column="0" Grid.Row="2" FontSize="18" 
+        <Rectangle Fill="#BFEFFF" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <Label Content="Риэлтор" Grid.Column="0" Grid.Row="0" FontSize="18" 
                VerticalAlignment="Bottom"  />
 
-        <DataGrid x:Name="DealsDataGrid" Grid.Row="3" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="DealsDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.Header>
-                        Риэлтор
+                        ФИО
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -49,16 +42,20 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <GridSplitter Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Center" 
+        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Background="#BFEFFF" HorizontalAlignment="Center" 
                       Width="5"/>
+        <Label Content="Оформленные сделки" Grid.Column="3" Grid.Row="0" FontSize="18" 
+               VerticalAlignment="Bottom"  />
         <DataGrid x:Name="CopyDataGrid" ItemsSource ="{Binding ElementName=DealsDataGrid, Path =SelectedItem.DEALS1}" 
-                  Grid.Row="3" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False" Background="White">
+                  Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False" Background="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Покупатель" Binding="{Binding Path=PEOPLE.SURNAME}"  Width="10*"/>
                 <DataGridTextColumn Header="Дата сделки" Binding="{Binding Path=DATA_DEALS}" Width="80"/>
                 <DataGridTextColumn Header="Коммисия" Binding="{Binding Path=COMM_REAL}" Width="90"/>
             </DataGrid.Columns>
         </DataGrid>
-
+        <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="AddAreas" Content="Оформить сделку" Width="150" Margin="5,5"  Click="ShowButtonDeals"/>
+        </StackPanel>
     </Grid>
 </Page>

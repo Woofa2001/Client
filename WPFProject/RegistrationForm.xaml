@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFProject"
         mc:Ignorable="d"
-        Title="RegistrationForm" Height="200" Width="500">
+        Title="Регистрация" Height="170" Width="500">
     <Grid>
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Left" Background="#FF42992F">
-                <Image DockPanel.Dock="Left" Width="60" Height="60"
-                       Margin="10,20" Source="Images/Library.png"/>
+
+        <DockPanel Background="#BFEFFF">
+            <StackPanel DockPanel.Dock="Left" Background="#BFEFFF">
+                <Image DockPanel.Dock="Left" Width="80" Height="70"
+                       Margin="10,20" Source="Images/Image.png"/>
             </StackPanel>
 
             <StackPanel Margin="10,15,20,0">

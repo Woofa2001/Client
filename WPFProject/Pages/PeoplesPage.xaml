@@ -19,10 +19,10 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FF42992F" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+        <Rectangle Fill="#BFEFFF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <Label Content="Люди" Grid.ColumnSpan="3" FontSize="20" 
                VerticalAlignment="Bottom" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button x:Name="AddPeople" Content="Добавить" Width="75" Margin="5,5"  Click="ShowButtonPeople"/>
             <Button x:Name="CopyPeople" Content="Копировать" Width="75" Margin="5,5" Click="ShowButtonPeople"/>
             <Button x:Name="EditPeople" Content="Изменить" Width="75" Margin="5,5"  Click="ShowButtonPeople"/>
@@ -66,11 +66,12 @@
 
         </DataGrid>
 
-        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" 
-                      Width="5"/>
+        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" 
+                      Width="4" Background="#9BB6BF"/>
         
-        <Button Content="X" Click="CloseEdChangeClick" Grid.Column="2" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <StackPanel  Grid.RowSpan="2" Grid.Row="8" Grid.Column="2" Orientation="Vertical">
+       
+        <StackPanel  Grid.RowSpan="2" Grid.Row="8" Grid.Column="2" Orientation="Vertical" Background="#BADFFF">
+            <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <Label Content="Фамилия" Foreground="Black"/>
             <TextBox Text="{Binding ElementName=PeopleDataGrid, Path=SelectedItem.SURNAME}" x:Name="PeopleFTextBox"/>
             <Label Content="Имя" Foreground="Black"/>

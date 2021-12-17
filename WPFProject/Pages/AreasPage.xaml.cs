@@ -35,6 +35,9 @@ namespace WPFProject.Pages
                 ChangeColumn.Width = new GridLength(250);
                 SplitterColumn.Width = GridLength.Auto;
                 AreasDataGrid.Focus();
+                AreasDataGrid.IsHitTestVisible = false;
+                AreasFilterComboBox.IsHitTestVisible = false;
+                AreasFilterTextBox.IsHitTestVisible = false;
                 if ((sender as Button).Content.ToString() == "Добавить")
                 {
                     AreasDataGrid.SelectedItem = null;
@@ -44,7 +47,6 @@ namespace WPFProject.Pages
                     TYPE_AREA = AreaTypeTextBox.Text;
                     AreasDataGrid.SelectedItem = null;
                     AreaTypeTextBox.Text = TYPE_AREA;
-                    AreasDataGrid.IsHitTestVisible = false;
                 }
             }
             else
@@ -59,6 +61,8 @@ namespace WPFProject.Pages
             ChangeColumn.Width = new GridLength(0);
             SplitterColumn.Width = new GridLength(0);
             AreasDataGrid.IsHitTestVisible = true;
+            AreasFilterComboBox.IsHitTestVisible = true;
+            AreasFilterTextBox.IsHitTestVisible = true;
         }
 
         private void CommitButtonAreas(object sender, RoutedEventArgs e)

@@ -33,6 +33,8 @@ namespace WPFProject.Pages
             ChangeColumn.Width = new GridLength(0);
             SplitterColumn.Width = new GridLength(0);
             TypeObjectDataGrid.IsHitTestVisible = true;
+            TypeObjectsFilterComboBox.IsHitTestVisible = true;
+            TypeObjectsFilterTextBox.IsHitTestVisible = true;
         }
 
         private void ShowButtonTypeObject(object sender, RoutedEventArgs e)
@@ -41,6 +43,9 @@ namespace WPFProject.Pages
             {
                 ChangeColumn.Width = new GridLength(175);
                 SplitterColumn.Width = GridLength.Auto;
+                TypeObjectDataGrid.IsHitTestVisible = false;
+                TypeObjectsFilterComboBox.IsHitTestVisible = false;
+                TypeObjectsFilterTextBox.IsHitTestVisible = false;
                 if ((sender as Button).Content.ToString() == "Добавить")
                 {
                     TypeObjectDataGrid.SelectedItem = null;
@@ -50,7 +55,7 @@ namespace WPFProject.Pages
                     NAME_TYPE = NameTypeTextBox.Text;
                     TypeObjectDataGrid.SelectedItem = null;
                     NameTypeTextBox.Text = NAME_TYPE;
-                    TypeObjectDataGrid.IsHitTestVisible = false;
+                    
                 }
             }
             else

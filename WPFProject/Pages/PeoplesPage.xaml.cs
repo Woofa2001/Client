@@ -52,6 +52,8 @@ namespace WPFProject.Pages
             ChangeColumn.Width = new GridLength(0);
             SplitterColumn.Width = new GridLength(0);
             PeopleDataGrid.IsHitTestVisible = true;
+            PeopleFilterComboBox.IsHitTestVisible = true;
+            PeopleFilterTextBox.IsHitTestVisible = true; 
         }
 
         private void ShowButtonPeople(object sender, RoutedEventArgs e)
@@ -60,10 +62,12 @@ namespace WPFProject.Pages
             {
                 ChangeColumn.Width = new GridLength(175);
                 SplitterColumn.Width = GridLength.Auto;
+                PeopleDataGrid.IsHitTestVisible = false;
+                PeopleFilterComboBox.IsHitTestVisible = false;
+                PeopleFilterTextBox.IsHitTestVisible = false;
                 if ((sender as Button).Content.ToString() == "Добавить")
                 {
                     PeopleDataGrid.SelectedItem = null;
-                    PeopleDataGrid.IsHitTestVisible = false;
                 }
                 if ((sender as Button).Content.ToString() == "Копировать")
                 {
@@ -74,7 +78,7 @@ namespace WPFProject.Pages
                     PeopleFTextBox.Text = SURNAME;
                     PeopleITextBox.Text = NAME;
                     PeopleOTextBox.Text = MIDNAME;
-                    PeopleDataGrid.IsHitTestVisible = false;
+ 
                 }
             }
             else
