@@ -9,7 +9,15 @@
       Title="AddProposalsPage">
 
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" x:Name="GridReal"/>
+            <ColumnDefinition Width="0" x:Name="GridCustomers"/>
+            <ColumnDefinition Width="0" x:Name="GridProposals"/>
+            <ColumnDefinition Width="0" x:Name="ChangeColumn"/>
+        </Grid.ColumnDefinitions>
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
@@ -19,8 +27,8 @@
         <Rectangle Fill="#BFEFFF" Grid.Row="0"  />
         <Label Content="Добавление сделки"  FontSize="20" 
                VerticalAlignment="Bottom" />
-        
-        <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
+
+        <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
@@ -55,9 +63,149 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <DataGrid x:Name="PeopleDataGrid1" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        Фамилия
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding SURNAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        Имя
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding NAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        Отчество
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding MIDNAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
+        <DataGrid x:Name="ProposalsDataGrid" Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn MinWidth="125">
+                    <DataGridTemplateColumn.Header>Риэлтор</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding PEOPLE.NAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="125">
+                    <DataGridTemplateColumn.Header>Тип обьекта</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding TYPE_OBJECTS.NAME_TYPE}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="125">
+                    <DataGridTemplateColumn.Header>Район</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding AREAS.TYPE_AREA}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="125">
+                    <DataGridTemplateColumn.Header>Улица</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding STREET}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn >
+
+                <DataGridTemplateColumn MinWidth="65">
+                    <DataGridTemplateColumn.Header>Номер дома</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding FLAT}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="65">
+                    <DataGridTemplateColumn.Header>Номер этажа</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding FLOOR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="65">
+                    <DataGridTemplateColumn.Header>Кол-во этажей в доме</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding COUNT_FLOORS}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="65">
+                    <DataGridTemplateColumn.Header>Кол-во комнат</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding COUNT_ROOMS}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="65">
+                    <DataGridTemplateColumn.Header>Общая площадь</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding TOTAL_AREA}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="65">
+                    <DataGridTemplateColumn.Header>Жилая площадь</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding LIVING_AREA}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" MinWidth="125">
+                    <DataGridTemplateColumn.Header>Стоимость</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding COST}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
         <Rectangle Fill="#BFEFFF" Grid.Row="2"  />
-        <Label Content="Шаг 1 - Добавление покупателя" Grid.Row="2" Grid.Column="0" FontSize="20" 
-               HorizontalAlignment="Left" />
-        <Button x:Name="NextStepButton" Content="Далее" Grid.Row="2"  FontSize="20"  Width="150" Click="NextStepButton_Click" Height="35" HorizontalAlignment="Right" Margin="5,5"/>
+        <Label Content="Шаг 1 - Добавление риэлтора" Grid.Row="2" Grid.Column="0" FontSize="20" 
+               HorizontalAlignment="Left" x:Name="LabelSteps"/>
+        <Button x:Name="NextStepButton" Content="Далее" Grid.Row="2"  Width="110" Click="NextStepButton_Click" Height="25" HorizontalAlignment="Right" Margin="5,5"/>
     </Grid>
 </Page>

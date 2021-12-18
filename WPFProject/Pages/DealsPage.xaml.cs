@@ -42,7 +42,7 @@ namespace WPFProject.Pages
 
         private void ShowButtonDeals(object sender, RoutedEventArgs e)
         {
-           
+            DealsFrame.Navigate(new Pages.AddProposalsPage());
         }
 
         private void DeleteButtonDeals(object sender, RoutedEventArgs e)

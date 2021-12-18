@@ -57,5 +57,6 @@
         <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
             <Button x:Name="AddAreas" Content="Оформить сделку" Width="150" Margin="5,5"  Click="ShowButtonDeals"/>
         </StackPanel>
+        <Frame x:Name="DealsFrame" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" NavigationUIVisibility="Hidden" />
     </Grid>
 </Page>

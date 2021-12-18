@@ -20,14 +20,30 @@ namespace WPFProject.Pages
     /// </summary>
     public partial class AddProposalsPage : Page
     {
+        int steps;
         public AddProposalsPage()
         {
             InitializeComponent();
+            steps = 0;
+            DataContext = this;
+            PeopleDataGrid.ItemsSource = SourceCore.DB.PEOPLE.ToList();
+            PeopleDataGrid1.ItemsSource = SourceCore.DB.PEOPLE.ToList();
+            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
         }
 
         private void NextStepButton_Click(object sender, RoutedEventArgs e)
         {
-
+            steps++;
+            if (steps == 1)
+            {
+                LabelSteps.Content = "Шаг 2 - Добавление покупателя";
+                
+            }
+            if(steps == 2)
+            {
+                LabelSteps.Content = "Шаг 3 - Добавление остаточных данных";
+                NextStepButton.Content = "Завершить";
+            }
         }
     }
 }

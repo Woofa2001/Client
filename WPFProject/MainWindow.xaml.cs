@@ -58,33 +58,38 @@ namespace WPFProject
 
         }
 
+
         private void ShowPage()
         {
-            if (i == 1 || i == 6)
-            {
-                RealAgencyFrame.Navigate(new Pages.AreasPage());
-                i = 1;
-            }
-            if (i == 2)
-            {
-                RealAgencyFrame.Navigate(new Pages.PeoplesPage());
-            }
-            if (i == 3)
-            {
-                RealAgencyFrame.Navigate(new Pages.ProposalPage());
-            }
-            if (i == 4)
-            {
-                RealAgencyFrame.Navigate(new Pages.TypeObjectsPage());
-            }
-            if (i == 5 || i == 0 )
-            {
-                RealAgencyFrame.Navigate(new Pages.DealsPage());
-                i = 5;
-            }
-            if (i == -1)
-            {
-                RealAgencyFrame.Content = null;
+            switch(i)
+                {
+                case 0:
+                    RealAgencyFrame.Navigate(new Pages.DealsPage());
+                    i = 5;
+                    break;     
+                case 1:
+                    RealAgencyFrame.Navigate(new Pages.AreasPage());
+                break;
+                case 2:
+                    RealAgencyFrame.Navigate(new Pages.PeoplesPage());
+                    break;
+                case 3:
+                    RealAgencyFrame.Navigate(new Pages.ProposalPage());
+                    break;
+                case 4:
+                    RealAgencyFrame.Navigate(new Pages.TypeObjectsPage());
+                    break;
+                case 5:
+                    RealAgencyFrame.Navigate(new Pages.DealsPage());
+                    break;
+                case 6:
+                    RealAgencyFrame.Navigate(new Pages.AreasPage());
+                    i = 1;
+                    break;
+                default:
+                    RealAgencyFrame.Content = null;
+                    break;
+
             }
         }
 
@@ -92,6 +97,7 @@ namespace WPFProject
         {
             i--;
             ShowPage();
+            
         }
 
         private void ClosePageButton_Click(object sender, RoutedEventArgs e)
@@ -100,4 +106,5 @@ namespace WPFProject
             ShowPage();
         }
     }
+
 }
