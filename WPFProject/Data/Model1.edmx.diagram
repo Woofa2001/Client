@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3559c8a0de3142848a878a194ca2c03c" Name="Diagram1">
+      <Diagram DiagramId="e3e6529c097140c794c1a885296cad2b" Name="Diagram1">
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.AREAS" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.DEALS" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.PEOPLE" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.PROPOSALS" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.TYPE_OBJECTS" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Real_Estate_AgencyModel.USERS_TABLE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Real_Estate_AgencyModel.USERS_TABLE" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="Real_Estate_AgencyModel.FK_PROPOSALS_AREAS" ManuallyRouted="false" />
         <AssociationConnector Association="Real_Estate_AgencyModel.FK_DEALS_PEOPLE" ManuallyRouted="false" />
         <AssociationConnector Association="Real_Estate_AgencyModel.FK_DEALS_PEOPLE1" ManuallyRouted="false" />

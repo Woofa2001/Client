@@ -12,8 +12,8 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" x:Name="GridReal"/>
-            <ColumnDefinition Width="0" x:Name="GridCustomers"/>
             <ColumnDefinition Width="0" x:Name="GridProposals"/>
+            <ColumnDefinition Width="0" x:Name="GridCustomers"/>
             <ColumnDefinition Width="0" x:Name="ChangeColumn"/>
         </Grid.ColumnDefinitions>
 
@@ -24,8 +24,8 @@
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Fill="#BFEFFF" Grid.Row="0"  />
-        <Label Content="Добавление сделки"  FontSize="20" 
+        <Rectangle Fill="#BFEFFF" Grid.Row="0"  Grid.ColumnSpan="4" />
+        <Label Content="Добавление сделки" Grid.ColumnSpan="4" FontSize="20" 
                VerticalAlignment="Bottom" />
 
         <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -63,47 +63,11 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="PeopleDataGrid1" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        Фамилия
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding SURNAME}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        Имя
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding NAME}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.Header>
-                        Отчество
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding MIDNAME}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        
-        
-        <DataGrid x:Name="ProposalsDataGrid" Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="ProposalsDataGrid" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn MinWidth="125">
-                    <DataGridTemplateColumn.Header>Риэлтор</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.Header>Продавец</DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Content="{Binding PEOPLE.NAME}"/>
@@ -203,9 +167,55 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Rectangle Fill="#BFEFFF" Grid.Row="2"  />
-        <Label Content="Шаг 1 - Добавление риэлтора" Grid.Row="2" Grid.Column="0" FontSize="20" 
+
+        <DataGrid x:Name="PeopleDataGrid1" Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        Фамилия
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding SURNAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        Имя
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding NAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        Отчество
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding MIDNAME}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <StackPanel  Grid.Row="1" Grid.Column="3" Orientation="Vertical" Background="#BADFFF">
+            
+            <Label Content="Дата" Foreground="Black"/>
+            <DatePicker  x:Name="PeopleFTextBox" />
+            <Label Content="Коммисия" Foreground="Black"/>
+            <TextBox  x:Name="RealCommTextBox" />
+            
+        </StackPanel>
+
+        <Rectangle Fill="#BFEFFF" Grid.Row="2" Grid.ColumnSpan="4" />
+        <Label Content="Шаг 1 - Добавление риэлтора" Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0" FontSize="20" 
                HorizontalAlignment="Left" x:Name="LabelSteps"/>
-        <Button x:Name="NextStepButton" Content="Далее" Grid.Row="2"  Width="110" Click="NextStepButton_Click" Height="25" HorizontalAlignment="Right" Margin="5,5"/>
+        <Button x:Name="NextStepButton" Content="Далее" Grid.Row="2" Grid.ColumnSpan="4"  Width="110" Click="NextStepButton_Click" Height="25" HorizontalAlignment="Right" Margin="5,5"/>
     </Grid>
 </Page>

@@ -12,18 +12,12 @@ namespace WPFProject.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class TYPE_OBJECTS
+    public partial class sysdiagrams
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TYPE_OBJECTS()
-        {
-            this.PROPOSALS = new HashSet<PROPOSALS>();
-        }
-    
-        public int ID_TYPE_OBJECT { get; set; }
-        public string NAME_TYPE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROPOSALS> PROPOSALS { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

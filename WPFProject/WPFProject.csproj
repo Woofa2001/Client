@@ -104,6 +104,9 @@
     <Compile Include="Data\PROPOSALS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\TYPE_OBJECTS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

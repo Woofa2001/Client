@@ -27,7 +27,6 @@ namespace WPFProject.Pages
         string SURNAME;
         string NAME;
         string MIDNAME;
-        int Indexpeople;
         string NAME_TYPE;
         string TYPE_AREA;
         string STREET;

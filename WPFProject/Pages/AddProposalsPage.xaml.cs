@@ -37,12 +37,20 @@ namespace WPFProject.Pages
             if (steps == 1)
             {
                 LabelSteps.Content = "Шаг 2 - Добавление покупателя";
-                
+                GridReal.Width = new GridLength(0);
+                GridProposals.Width = new GridLength(1, GridUnitType.Star);
             }
             if(steps == 2)
             {
                 LabelSteps.Content = "Шаг 3 - Добавление остаточных данных";
                 NextStepButton.Content = "Завершить";
+                GridProposals.Width = new GridLength(0);
+                GridCustomers.Width = new GridLength(1, GridUnitType.Star);
+                ChangeColumn.Width = new GridLength(150);
+            }
+            if(steps == 3)
+            {
+                   
             }
         }
     }
