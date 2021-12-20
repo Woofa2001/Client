@@ -78,6 +78,9 @@ namespace WPFProject.Pages
         {
             ChangeColumn.Width = new GridLength(0);
             SplitterColumn.Width = new GridLength(0);
+            ProposalsDataGrid.IsHitTestVisible = true;
+            ProposalsFilterComboBox.IsHitTestVisible = true;
+            ProposalsFilterTextBox.IsHitTestVisible = true;
         }
 
         private void ShowButtonProposals(object sender, RoutedEventArgs e)
@@ -196,6 +199,7 @@ namespace WPFProject.Pages
             ProposalsFilterComboBox.ItemsSource = Columns;
             ProposalsFilterComboBox.SelectedIndex = 0;
             // Запрет на управление сортировкой щелчком по заголовку столбца
+           
             foreach (DataGridColumn Column in ProposalsDataGrid.Columns)
             {
                 Column.CanUserSort = false;
@@ -204,7 +208,16 @@ namespace WPFProject.Pages
 
         private void ProposalsFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if ((ProposalsFilterComboBox.SelectedIndex == 8) || (ProposalsFilterComboBox.SelectedIndex == 9) || (ProposalsFilterComboBox.SelectedIndex == 11))
+            {
+                ProposalsFilterTextBox1.Visibility = Visibility.Visible;
+                ProposalsFilterTextBox.Width = 85;
+            }
+            else
+            {
+                ProposalsFilterTextBox1.Visibility = Visibility.Hidden;
+                ProposalsFilterTextBox.Width = 175;
+            }
         }
 
         private void ProposalsFilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -237,10 +250,12 @@ namespace WPFProject.Pages
                     ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COUNT_ROOMS.ToString().Contains(textbox.Text)).ToList();
                     break;
                 case 8:
+                   // ProposalsFilterTextBox1.Visibility = Visibility.Visible;
                     try
                     {
                         int.TryParse(ProposalsFilterTextBox.Text, out int val);
-                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.TOTAL_AREA.Value >= val).ToList();
+                        int.TryParse(ProposalsFilterTextBox1.Text, out int val1);
+                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.TOTAL_AREA.Value >= val) && (filtercase.TOTAL_AREA.Value <= val1)).ToList();
                     }
                     catch (Exception ex)
                     {

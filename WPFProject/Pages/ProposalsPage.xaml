@@ -31,7 +31,8 @@
             <Button x:Name="EditAreas" Content="Изменить" Width="75" Margin="5,5" Click="ShowButtonProposals"/>
             <Button x:Name="DeleteAreas" Content="Удалить" Width="75" Margin="5,5" Click="DeleteButtonProposals"/>
             <ComboBox Name="ProposalsFilterComboBox" Width="150" Margin="5,5" SelectionChanged="ProposalsFilterComboBox_SelectionChanged"/>
-            <TextBox x:Name="ProposalsFilterTextBox" Width="175" Margin="5,5" TextChanged="ProposalsFilterTextBox_TextChanged" />
+            <TextBox x:Name="ProposalsFilterTextBox" Width="175" Margin="5,5" TextChanged="ProposalsFilterTextBox_TextChanged" Visibility="Visible" />
+            <TextBox x:Name="ProposalsFilterTextBox1" Width="85" Margin="5,5" TextChanged="ProposalsFilterTextBox_TextChanged" Visibility="Hidden" />
         </StackPanel>
         
         <DataGrid x:Name="ProposalsDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">

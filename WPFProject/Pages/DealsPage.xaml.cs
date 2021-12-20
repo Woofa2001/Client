@@ -30,7 +30,7 @@ namespace WPFProject.Pages
 
         private void CommitButtonProposals(object sender, RoutedEventArgs e)
         {
-            
+
             SourceCore.DB.SaveChanges();
             CloseEdChangeClick(sender, e);
         }
@@ -52,6 +52,10 @@ namespace WPFProject.Pages
                 SourceCore.DB.DEALS.Remove((Data.DEALS)DealsDataGrid.SelectedItem);
                 SourceCore.DB.SaveChanges();
             }
+        }
+        public void ClosePage()
+        {
+            DealsFrame.Content = null;
         }
     }
 }

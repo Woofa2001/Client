@@ -36,13 +36,13 @@ namespace WPFProject.Pages
             steps++;
             if (steps == 1)
             {
-                LabelSteps.Content = "Шаг 2 - Добавление покупателя";
+                LabelSteps.Content = "Шаг 2 - Выберите предложение";
                 GridReal.Width = new GridLength(0);
                 GridProposals.Width = new GridLength(1, GridUnitType.Star);
             }
             if(steps == 2)
             {
-                LabelSteps.Content = "Шаг 3 - Добавление остаточных данных";
+                LabelSteps.Content = "Шаг 3 - Выберите покупателя/дату/комиссию";
                 NextStepButton.Content = "Завершить";
                 GridProposals.Width = new GridLength(0);
                 GridCustomers.Width = new GridLength(1, GridUnitType.Star);
@@ -50,7 +50,15 @@ namespace WPFProject.Pages
             }
             if(steps == 3)
             {
-                   
+                var A = new Data.DEALS();
+                A.PEOPLE1= (Data.PEOPLE)PeopleDataGrid.SelectedItem;
+                A.PROPOSALS = (Data.PROPOSALS)ProposalsDataGrid.SelectedItem;
+                A.PEOPLE = (Data.PEOPLE)PeopleDataGrid1.SelectedItem;
+                A.COMM_REAL = Int32.Parse(RealCommTextBox.Text);
+                A.DATA_DEALS = DateTime.Parse(DateDealsPicker.Text);
+                SourceCore.DB.DEALS.Add(A);
+                SourceCore.DB.SaveChanges();
+             //   Pages.DealsPage.Close
             }
         }
     }

@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#BFEFFF" Grid.Row="0"  Grid.ColumnSpan="4" />
-        <Label Content="Добавление сделки" Grid.ColumnSpan="4" FontSize="20" 
+        <Label Content="Оформление сделки" Grid.ColumnSpan="4" FontSize="20" 
                VerticalAlignment="Bottom" />
 
         <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -207,14 +207,14 @@
         <StackPanel  Grid.Row="1" Grid.Column="3" Orientation="Vertical" Background="#BADFFF">
             
             <Label Content="Дата" Foreground="Black"/>
-            <DatePicker  x:Name="PeopleFTextBox" />
+            <DatePicker  x:Name="DateDealsPicker" />
             <Label Content="Коммисия" Foreground="Black"/>
             <TextBox  x:Name="RealCommTextBox" />
             
         </StackPanel>
 
         <Rectangle Fill="#BFEFFF" Grid.Row="2" Grid.ColumnSpan="4" />
-        <Label Content="Шаг 1 - Добавление риэлтора" Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0" FontSize="20" 
+        <Label Content="Шаг 1 - Выберите риэлтора" Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0" FontSize="20" 
                HorizontalAlignment="Left" x:Name="LabelSteps"/>
         <Button x:Name="NextStepButton" Content="Далее" Grid.Row="2" Grid.ColumnSpan="4"  Width="110" Click="NextStepButton_Click" Height="25" HorizontalAlignment="Right" Margin="5,5"/>
     </Grid>
