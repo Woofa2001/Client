@@ -25,10 +25,14 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#BFEFFF" Grid.Row="0"  Grid.ColumnSpan="4" />
-        <Label Content="Оформление сделки" Grid.ColumnSpan="4" FontSize="20" 
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" >
+            <Label Content="Оформление сделки"  FontSize="20" 
                VerticalAlignment="Bottom" />
-
-        <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+            
+            <TextBox Width="150" Height="30"/>
+            
+        </StackPanel>
+                <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>

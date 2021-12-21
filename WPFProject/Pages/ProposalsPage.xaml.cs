@@ -95,7 +95,7 @@ namespace WPFProject.Pages
                 if ((sender as Button).Content.ToString() == "Добавить")
                 {
                     ProposalsDataGrid.SelectedItem = null;
-                    
+
                 }
                 if ((sender as Button).Content.ToString() == "Копировать")
                 {
@@ -129,7 +129,7 @@ namespace WPFProject.Pages
                     ProposalsLAreaTextBox.Text = LIVING_AREA;
                     ProposalsDiscriptionTextBox.Text = DESCRIPTION;
                     ProposalsCostTextBox.Text = COST;
- 
+
                 }
             }
             else
@@ -199,7 +199,7 @@ namespace WPFProject.Pages
             ProposalsFilterComboBox.ItemsSource = Columns;
             ProposalsFilterComboBox.SelectedIndex = 0;
             // Запрет на управление сортировкой щелчком по заголовку столбца
-           
+
             foreach (DataGridColumn Column in ProposalsDataGrid.Columns)
             {
                 Column.CanUserSort = false;
@@ -250,17 +250,33 @@ namespace WPFProject.Pages
                     ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COUNT_ROOMS.ToString().Contains(textbox.Text)).ToList();
                     break;
                 case 8:
-                   // ProposalsFilterTextBox1.Visibility = Visibility.Visible;
-                    try
+                    // ProposalsFilterTextBox1.Visibility = Visibility.Visible;
+                    var textbox1 = ProposalsFilterTextBox1;
+                    
+                    if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
                     {
                         int.TryParse(ProposalsFilterTextBox.Text, out int val);
                         int.TryParse(ProposalsFilterTextBox1.Text, out int val1);
-                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.TOTAL_AREA.Value >= val) && (filtercase.TOTAL_AREA.Value <= val1)).ToList();
+
+                        //ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Select(proposal => proposal.TOTAL_AREA.Value >= val && proposal.TOTAL_AREA.Value <= val1).ToList();
+
+                        if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.TOTAL_AREA.Value >= val).ToList();
+                        }
+                        else if ((ProposalsFilterTextBox1.Text != "") && (ProposalsFilterTextBox.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.TOTAL_AREA.Value <= val1).ToList();
+                        }
+                        else
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.TOTAL_AREA.Value >= val) && (filtercase.TOTAL_AREA.Value <= val1)).ToList();
+                        }
+
+
                     }
-                    catch (Exception ex)
-                    {
+                    else
                         ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
-                    }
                     break;
                 case 9:
                     //   ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Contains(textbox.Text)).ToList();
