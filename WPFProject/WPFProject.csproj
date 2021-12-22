@@ -223,6 +223,7 @@
   <ItemGroup>
     <Resource Include="Images\Image.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

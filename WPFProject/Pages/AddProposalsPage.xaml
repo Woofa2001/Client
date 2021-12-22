@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPFProject.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddProposalsPage">
+      Title="AddProposalsPage" Loaded="Page_Loaded" >
 
     <Grid>
 
@@ -25,11 +25,13 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#BFEFFF" Grid.Row="0"  Grid.ColumnSpan="4" />
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" >
+        <StackPanel Grid.Row="0" Grid.Column="0"  Orientation="Horizontal" >
             <Label Content="Оформление сделки"  FontSize="20" 
                VerticalAlignment="Bottom" />
+
+            <ComboBox Name="PeopleFilterComboBox" Width="150" Margin="5,5" SelectionChanged="PeopleFilterComboBox_SelectionChanged"/>
+            <TextBox x:Name="PeopleFilterTextBox" Width="175" Margin="5,5" TextChanged="PeopleFilterTextBox_TextChanged" /> 
             
-            <TextBox Width="150" Height="30"/>
             
         </StackPanel>
                 <DataGrid x:Name="PeopleDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -67,6 +69,15 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" >
+            <Label Content="Оформление сделки"  FontSize="20" 
+               VerticalAlignment="Bottom" />
+
+            <ComboBox Name="ProposalsFilterComboBox" Width="150" Margin="5,5" SelectionChanged="ProposalsFilterComboBox_SelectionChanged"/>
+            <TextBox x:Name="ProposalsFilterTextBox" Width="175" Margin="5,5" TextChanged="ProposalsFilterTextBox_TextChanged" />
+            <TextBox x:Name="ProposalsFilterTextBox1" Width="85" Margin="5,5" TextChanged="ProposalsFilterTextBox_TextChanged" Visibility="Hidden" />
+
+        </StackPanel>
         <DataGrid x:Name="ProposalsDataGrid" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
 
@@ -74,7 +85,7 @@
                     <DataGridTemplateColumn.Header>Продавец</DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding PEOPLE.NAME}"/>
+                            <Label Content="{Binding PEOPLE.SURNAME}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -171,7 +182,15 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <StackPanel Grid.Row="0" Grid.Column="2"  Orientation="Horizontal" >
+            <Label Content="Оформление сделки"  FontSize="20" 
+               VerticalAlignment="Bottom" />
 
+            <ComboBox Name="People1FilterComboBox" Width="150" Margin="5,5" SelectionChanged="People1FilterComboBox_SelectionChanged"/>
+            <TextBox x:Name="People1FilterTextBox" Width="175" Margin="5,5" TextChanged="People1FilterTextBox_TextChanged" />
+
+
+        </StackPanel>
         <DataGrid x:Name="PeopleDataGrid1" Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>

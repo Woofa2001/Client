@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="84d7a8d46c0542a1b32fe0ecbc3ccfec" Name="Diagram1">
+      <Diagram DiagramId="2458bc72aa114f4ab60790ffbfef1f53" Name="Diagram1">
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.AREAS" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.DEALS" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Real_Estate_AgencyModel.PEOPLE" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
