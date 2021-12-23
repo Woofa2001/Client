@@ -53,9 +53,5 @@ namespace WPFProject.Pages
                 SourceCore.DB.SaveChanges();
             }
         }
-        public void ClosePage()
-        {
-            DealsFrame.Content = null;
-        }
     }
 }

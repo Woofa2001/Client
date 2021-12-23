@@ -230,10 +230,9 @@
         <StackPanel  Grid.Row="1" Grid.Column="3" Orientation="Vertical" Background="#BADFFF">
             
             <Label Content="Дата" Foreground="Black"/>
-            <DatePicker  x:Name="DateDealsPicker" />
+            <DatePicker  x:Name="DateDealsPicker" SelectedDate="04.04.1999" />
             <Label Content="Коммисия" Foreground="Black"/>
-            <TextBox  x:Name="RealCommTextBox" />
-            
+            <TextBox Name="RealCommTextBox" Text="0" PreviewTextInput="NumberValidationTextBox"/>
         </StackPanel>
 
         <Rectangle Fill="#BFEFFF" Grid.Row="2" Grid.ColumnSpan="4" />

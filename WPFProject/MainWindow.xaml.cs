@@ -105,6 +105,11 @@ namespace WPFProject
             i = -1;
             ShowPage();
         }
+        public void ClosePage()
+        {
+            i = 5;
+            ShowPage();
+        }
     }
 
 }
