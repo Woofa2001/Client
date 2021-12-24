@@ -111,18 +111,26 @@ namespace WPFProject.Pages
         }
 
         private void CommitButtonTypeObject(object sender, RoutedEventArgs e)
-        {  
-            var A = new Data.TYPE_OBJECTS();
-            A.NAME_TYPE = NameTypeTextBox.Text;                
-            if (TypeObjectDataGrid.SelectedItem == null)
+        {
+            if (NameTypeTextBox.Text != "")
             {
-                SourceCore.DB.TYPE_OBJECTS.Add(A);
+                var A = new Data.TYPE_OBJECTS();
+                A.NAME_TYPE = NameTypeTextBox.Text;
+                if (TypeObjectDataGrid.SelectedItem == null)
+                {
+                    SourceCore.DB.TYPE_OBJECTS.Add(A);
 
+                }
+                SourceCore.DB.SaveChanges();
+                CloseEdChangeClick(sender, e);
+                UpdateGrid(A);
+                TypeObjectDataGrid.Focus();
             }
-            SourceCore.DB.SaveChanges();
-            CloseEdChangeClick(sender, e);
-            UpdateGrid(A);
-            TypeObjectDataGrid.Focus();
+            else
+            {
+                MessageBox.Show("Введите название типа объекта",
+                                "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

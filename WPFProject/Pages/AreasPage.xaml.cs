@@ -67,16 +67,24 @@ namespace WPFProject.Pages
 
         private void CommitButtonAreas(object sender, RoutedEventArgs e)
         {
-            var A = new Data.AREAS();
-            A.TYPE_AREA = AreaTypeTextBox.Text;
-            if (AreasDataGrid.SelectedItem == null)
-            {       
-                SourceCore.DB.AREAS.Add(A);
+            if (AreaTypeTextBox.Text != "")
+            {
+                var A = new Data.AREAS();
+                A.TYPE_AREA = AreaTypeTextBox.Text;
+                if (AreasDataGrid.SelectedItem == null)
+                {
+                    SourceCore.DB.AREAS.Add(A);
+                }
+                SourceCore.DB.SaveChanges();
+                CloseEdChangeClick(sender, e);
+                UpdateGrid(A);
+                AreasDataGrid.Focus();
             }
-            SourceCore.DB.SaveChanges();
-            CloseEdChangeClick(sender, e);
-            UpdateGrid(A);
-            AreasDataGrid.Focus();
+            else
+            {
+                MessageBox.Show("Введите Район",
+                "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+            }
         }
 
         private void DeleteButtonAreas(object sender, RoutedEventArgs e)

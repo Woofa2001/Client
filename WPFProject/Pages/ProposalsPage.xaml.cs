@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,28 +52,109 @@ namespace WPFProject.Pages
 
         private void CommitButtonProposals(object sender, RoutedEventArgs e)
         {
-            var A = new Data.PROPOSALS();
-            A.PEOPLE = (Data.PEOPLE)PeopleComboBox.SelectedItem;
-            A.AREAS = (Data.AREAS)AreasComboBox.SelectedItem;
-            A.TYPE_OBJECTS = (Data.TYPE_OBJECTS)TypeObjectComboBox.SelectedItem;
-            A.STREET = ProposalsStreetTextBox.Text;
-            A.FLAT = Int32.Parse(ProposalsFlatTextBox.Text);
-            A.FLOOR = Int32.Parse(ProposalsFloorTextBox.Text);
-            A.COUNT_FLOORS = Int32.Parse(ProposalsCFloorTextBox.Text);
-            A.COUNT_ROOMS = Int32.Parse(ProposalsRoomsTextBox.Text);
-            A.TOTAL_AREA = Int32.Parse(ProposalsTAreaTextBox.Text);
-            A.LIVING_AREA = Int32.Parse(ProposalsLAreaTextBox.Text);
-            A.COST = (decimal)double.Parse(ProposalsCostTextBox.Text.Replace(".", ","));
-            A.DESCRIPTION = ProposalsDiscriptionTextBox.Text;
-            if (ProposalsDataGrid.SelectedItem == null)
+            if (PeopleComboBox.SelectedItem != null)
             {
-                SourceCore.DB.PROPOSALS.Add(A);
+                if (AreasComboBox.SelectedItem != null)
+                {
+                    if (TypeObjectComboBox.SelectedItem != null)
+                    {
+                        if (ProposalsStreetTextBox.Text != "")
+                        {
+                            if (ProposalsFlatTextBox.Text != "")
+                            {
+                                if (ProposalsFloorTextBox.Text != "")
+                                {
+                                    if (ProposalsCFloorTextBox.Text != "")
+                                    {
+                                        if (ProposalsRoomsTextBox.Text != "")
+                                        {
+                                            if (ProposalsTAreaTextBox.Text != "")
+                                            {
+                                                if (ProposalsTAreaTextBox.Text != "")
+                                                {
+                                                    if (ProposalsCostTextBox.Text != "")
+                                                    {
+
+                                                        var A = new Data.PROPOSALS();
+                                                        A.PEOPLE = (Data.PEOPLE)PeopleComboBox.SelectedItem;
+                                                        A.AREAS = (Data.AREAS)AreasComboBox.SelectedItem;
+                                                        A.TYPE_OBJECTS = (Data.TYPE_OBJECTS)TypeObjectComboBox.SelectedItem;
+                                                        A.STREET = ProposalsStreetTextBox.Text;
+                                                        A.FLAT = Int32.Parse(ProposalsFlatTextBox.Text);
+                                                        A.FLOOR = Int32.Parse(ProposalsFloorTextBox.Text);
+                                                        A.COUNT_FLOORS = Int32.Parse(ProposalsCFloorTextBox.Text);
+                                                        A.COUNT_ROOMS = Int32.Parse(ProposalsRoomsTextBox.Text);
+                                                        A.TOTAL_AREA = Int32.Parse(ProposalsTAreaTextBox.Text);
+                                                        A.LIVING_AREA = Int32.Parse(ProposalsLAreaTextBox.Text);
+                                                        A.COST = (decimal)double.Parse(ProposalsCostTextBox.Text.Replace(".", ","));
+                                                        A.DESCRIPTION = ProposalsDiscriptionTextBox.Text;
+                                                        if (ProposalsDataGrid.SelectedItem == null)
+                                                        {
+                                                            SourceCore.DB.PROPOSALS.Add(A);
+                                                        }
+                                                        SourceCore.DB.SaveChanges();
+                                                        UpdateGrid(A);
+                                                        ProposalsDataGrid.Focus();
+                                                        CloseEdChangeClick(sender, e);
+
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Введите стоимость","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Укажите жилую площадь","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Укажите общую площадь","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Укажите кол-во комнат","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Укажите кол-во этажей в доме","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Укажите этаж","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Укажите номер дома","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Укажите улицу","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выберите тип объекта","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Выберите район","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                }
             }
-            SourceCore.DB.SaveChanges();
-            UpdateGrid(A);
-            ProposalsDataGrid.Focus();
-            CloseEdChangeClick(sender, e);
+            else
+            {
+                MessageBox.Show("Выберите продавца","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+            }
         }
+
+
 
         private void CloseEdChangeClick(object sender, RoutedEventArgs e)
         {
@@ -250,16 +332,10 @@ namespace WPFProject.Pages
                     ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COUNT_ROOMS.ToString().Contains(textbox.Text)).ToList();
                     break;
                 case 8:
-                    // ProposalsFilterTextBox1.Visibility = Visibility.Visible;
-                    var textbox1 = ProposalsFilterTextBox1;
-                    
                     if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
                     {
                         int.TryParse(ProposalsFilterTextBox.Text, out int val);
                         int.TryParse(ProposalsFilterTextBox1.Text, out int val1);
-
-                        //ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Select(proposal => proposal.TOTAL_AREA.Value >= val && proposal.TOTAL_AREA.Value <= val1).ToList();
-
                         if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
                         {
                             ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.TOTAL_AREA.Value >= val).ToList();
@@ -272,22 +348,64 @@ namespace WPFProject.Pages
                         {
                             ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.TOTAL_AREA.Value >= val) && (filtercase.TOTAL_AREA.Value <= val1)).ToList();
                         }
+                    }
+                    else
+                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
+                    break;
+                case 9:
+                    if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
+                    {
+                        int.TryParse(ProposalsFilterTextBox.Text, out int val);
+                        int.TryParse(ProposalsFilterTextBox1.Text, out int val1);
+
+                        if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Value >= val).ToList();
+                        }
+                        else if ((ProposalsFilterTextBox1.Text != "") && (ProposalsFilterTextBox.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Value <= val1).ToList();
+                        }
+                        else
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.LIVING_AREA.Value >= val) && (filtercase.LIVING_AREA.Value <= val1)).ToList();
+                        }
 
 
                     }
                     else
                         ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
                     break;
-                case 9:
-                    //   ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Contains(textbox.Text)).ToList();
-                    break;
                 case 10:
                     ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.DESCRIPTION.Contains(textbox.Text)).ToList();
                     break;
                 case 11:
-                    // ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COST.Contains(textbox.Text)).ToList();
+                    if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
+                    {
+                        decimal.TryParse(ProposalsFilterTextBox.Text, out decimal val);
+                        decimal.TryParse(ProposalsFilterTextBox1.Text, out decimal val1);
+                        if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COST.Value >= val).ToList();
+                        }
+                        else if ((ProposalsFilterTextBox1.Text != "") && (ProposalsFilterTextBox.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COST.Value <= val1).ToList();
+                        }
+                        else
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.COST.Value >= val) && (filtercase.COST.Value <= val1)).ToList();
+                        }
+                    }
+                    else
+                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
                     break;
             }
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 

@@ -186,25 +186,25 @@
                 <TextBox Text = "{Binding SelectedItem.STREET, ElementName=ProposalsDataGrid}" x:Name="ProposalsStreetTextBox"/>
                 
                 <Label Content = "Номер дома" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.FLAT, ElementName=ProposalsDataGrid, Mode=TwoWay}" x:Name="ProposalsFlatTextBox" />
+                <TextBox Text = "{Binding SelectedItem.FLAT, ElementName=ProposalsDataGrid, Mode=TwoWay}" x:Name="ProposalsFlatTextBox" PreviewTextInput="NumberValidationTextBox" />
                 
                 <Label Content = "Этаж" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.FLOOR, ElementName=ProposalsDataGrid}" x:Name="ProposalsFloorTextBox"/>
+                <TextBox Text = "{Binding SelectedItem.FLOOR, ElementName=ProposalsDataGrid}" x:Name="ProposalsFloorTextBox" PreviewTextInput="NumberValidationTextBox"/>
                 
                 <Label Content = "Количество этажей в доме" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.COUNT_FLOORS, ElementName=ProposalsDataGrid}" x:Name="ProposalsCFloorTextBox"/>
+                <TextBox Text = "{Binding SelectedItem.COUNT_FLOORS, ElementName=ProposalsDataGrid}" x:Name="ProposalsCFloorTextBox" PreviewTextInput="NumberValidationTextBox"/>
                 
                 <Label Content = "Количество комнат" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.COUNT_ROOMS, ElementName=ProposalsDataGrid}" x:Name="ProposalsRoomsTextBox"/>
+                <TextBox Text = "{Binding SelectedItem.COUNT_ROOMS, ElementName=ProposalsDataGrid}" x:Name="ProposalsRoomsTextBox" PreviewTextInput="NumberValidationTextBox"/>
                 
                 <Label Content = "Общая площадь" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.TOTAL_AREA, ElementName=ProposalsDataGrid}" x:Name="ProposalsTAreaTextBox"/>
+                <TextBox Text = "{Binding SelectedItem.TOTAL_AREA, ElementName=ProposalsDataGrid}" x:Name="ProposalsTAreaTextBox" PreviewTextInput="NumberValidationTextBox"/>
                 
                 <Label Content = "Жилая площадь" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.LIVING_AREA, ElementName=ProposalsDataGrid}" x:Name="ProposalsLAreaTextBox" />
+                <TextBox Text = "{Binding SelectedItem.LIVING_AREA, ElementName=ProposalsDataGrid}" x:Name="ProposalsLAreaTextBox" PreviewTextInput="NumberValidationTextBox" />
                 
                 <Label Content = "Стоимость" Foreground="Black"/>
-                <TextBox Text = "{Binding SelectedItem.COST, ElementName=ProposalsDataGrid}" x:Name="ProposalsCostTextBox"/>
+                <TextBox Text = "{Binding SelectedItem.COST, ElementName=ProposalsDataGrid}" x:Name="ProposalsCostTextBox" PreviewTextInput="NumberValidationTextBox"/>
                 
                 <Label Content = "Описание" Foreground="Black"/>
                 <TextBox Text = "{Binding SelectedItem.DESCRIPTION, ElementName=ProposalsDataGrid}" x:Name="ProposalsDiscriptionTextBox" TextWrapping="Wrap"/>

@@ -19,18 +19,19 @@ namespace WPFProject.Pages
     /// <summary>
     /// Логика взаимодействия для AddProposalsPage.xaml
     /// </summary>
-    
+
     public partial class AddProposalsPage : Page
     {
-        private MainWindow MainWindow;
+        private Pages.DealsPage dealsPage;
         int steps;
-        public AddProposalsPage()
+        public AddProposalsPage(Pages.DealsPage DealPages)
         {
             InitializeComponent();
             DataContext = this;
             PeopleDataGrid.ItemsSource = SourceCore.DB.PEOPLE.ToList();
             PeopleDataGrid1.ItemsSource = SourceCore.DB.PEOPLE.ToList();
             ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
+            dealsPage = DealPages;
             steps = 0;
         }
 
@@ -39,7 +40,7 @@ namespace WPFProject.Pages
 
             steps++;
             Proverka();
-            
+
         }
 
         private void PeopleFilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -149,16 +150,10 @@ namespace WPFProject.Pages
                     ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COUNT_ROOMS.ToString().Contains(textbox.Text)).ToList();
                     break;
                 case 8:
-                    // ProposalsFilterTextBox1.Visibility = Visibility.Visible;
-                    var textbox1 = ProposalsFilterTextBox1;
-
                     if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
                     {
                         int.TryParse(ProposalsFilterTextBox.Text, out int val);
                         int.TryParse(ProposalsFilterTextBox1.Text, out int val1);
-
-                        //ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Select(proposal => proposal.TOTAL_AREA.Value >= val && proposal.TOTAL_AREA.Value <= val1).ToList();
-
                         if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
                         {
                             ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.TOTAL_AREA.Value >= val).ToList();
@@ -171,20 +166,57 @@ namespace WPFProject.Pages
                         {
                             ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.TOTAL_AREA.Value >= val) && (filtercase.TOTAL_AREA.Value <= val1)).ToList();
                         }
-
-
                     }
                     else
                         ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
                     break;
                 case 9:
-                    //   ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Contains(textbox.Text)).ToList();
+                    if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
+                    {
+                        int.TryParse(ProposalsFilterTextBox.Text, out int val);
+                        int.TryParse(ProposalsFilterTextBox1.Text, out int val1);
+
+                        if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Value >= val).ToList();
+                        }
+                        else if ((ProposalsFilterTextBox1.Text != "") && (ProposalsFilterTextBox.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.LIVING_AREA.Value <= val1).ToList();
+                        }
+                        else
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.LIVING_AREA.Value >= val) && (filtercase.LIVING_AREA.Value <= val1)).ToList();
+                        }
+                    }
+                    else
+                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
                     break;
                 case 10:
                     ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.DESCRIPTION.Contains(textbox.Text)).ToList();
                     break;
                 case 11:
-                    // ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COST.Contains(textbox.Text)).ToList();
+                    if ((ProposalsFilterTextBox1.Text != "") || (ProposalsFilterTextBox.Text != ""))
+                    {
+                        decimal.TryParse(ProposalsFilterTextBox.Text, out decimal val);
+                        decimal.TryParse(ProposalsFilterTextBox1.Text, out decimal val1);
+                        if ((ProposalsFilterTextBox.Text != "") && (ProposalsFilterTextBox1.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COST.Value >= val).ToList();
+                        }
+                        else if ((ProposalsFilterTextBox1.Text != "") && (ProposalsFilterTextBox.Text == ""))
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => filtercase.COST.Value <= val1).ToList();
+                        }
+                        else
+                        {
+                            ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.Where(filtercase => (filtercase.COST.Value >= val) && (filtercase.COST.Value <= val1)).ToList();
+                        }
+
+
+                    }
+                    else
+                        ProposalsDataGrid.ItemsSource = SourceCore.DB.PROPOSALS.ToList();
                     break;
             }
         }
@@ -259,7 +291,7 @@ namespace WPFProject.Pages
                     A.DATA_DEALS = DateTime.Parse(DateDealsPicker.Text);
                     SourceCore.DB.DEALS.Add(A);
                     SourceCore.DB.SaveChanges();
-                    MainWindow.ClosePage();
+                    dealsPage.DealsFrame.Content = null;
                 }
                 else
                 {

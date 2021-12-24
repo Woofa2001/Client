@@ -32,19 +32,40 @@ namespace WPFProject.Pages
 
         private void CommitButtonPeople(object sender, RoutedEventArgs e)
         {
-            var A = new Data.PEOPLE();
-            A.SURNAME = PeopleFTextBox.Text;
-            A.NAME = PeopleITextBox.Text;
-            A.MIDNAME = PeopleOTextBox.Text;
-            if (PeopleDataGrid.SelectedItem == null)
+            if (PeopleFTextBox.Text!="")
             {
-                SourceCore.DB.PEOPLE.Add(A);
+                if (PeopleITextBox.Text != "")
+                {
+                    if (PeopleOTextBox.Text != "")
+                    {
+                        var A = new Data.PEOPLE();
+                        A.SURNAME = PeopleFTextBox.Text;
+                        A.NAME = PeopleITextBox.Text;
+                        A.MIDNAME = PeopleOTextBox.Text;
+                        if (PeopleDataGrid.SelectedItem == null)
+                        {
+                            SourceCore.DB.PEOPLE.Add(A);
 
+                        }
+                        SourceCore.DB.SaveChanges();
+                        UpdateGrid(A);
+                        PeopleDataGrid.Focus();
+                        CloseEdChangeClick(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите Отчество", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введите Имя", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+                }
             }
-            SourceCore.DB.SaveChanges();
-            UpdateGrid(A);
-            PeopleDataGrid.Focus();
-            CloseEdChangeClick(sender, e);
+            else
+            {
+                MessageBox.Show("Введите Фамилию","Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.None);
+            }
         }
 
         private void CloseEdChangeClick(object sender, RoutedEventArgs e)
